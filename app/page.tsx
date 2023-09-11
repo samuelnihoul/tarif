@@ -58,7 +58,7 @@ const Calculator: React.FC = () => {
         />
       </label>
       <br />
-      <button onClick={calculate} className="t-m">Calculate</button>
+      <button onClick={calculate} className="t-m p-10">Calculate</button>
 
       {result && (
         <div>
