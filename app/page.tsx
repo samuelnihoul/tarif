@@ -39,7 +39,7 @@ const Calculator: React.FC = () => {
 
   return (
     <div className="container mx-auto p-8 bg-gray-800 ">
-      <h1 className="">Tarif</h1>
+      <h1 className="t-xl">Tarif</h1>
       <label>
         Yearly Income ($):&nbsp;
         <input
@@ -58,11 +58,11 @@ const Calculator: React.FC = () => {
         />
       </label>
       <br />
-      <button onClick={calculate}>Calculate</button>
+      <button onClick={calculate} className="t-m">Calculate</button>
 
       {result && (
         <div>
-          <h2>Results:</h2>
+          <h2 className="t-l">Results:</h2>
           <div>Hourly Net: ${result.hourlyNet.toFixed(2)}</div>
           <div>Minutly Net: ${result.minutlyNet.toFixed(2)}</div>
           <div>Secondly Net: ${result.secondlyNet.toFixed(2)}</div>
