@@ -12,11 +12,12 @@ const Calculator: React.FC = () => {
     const hourlyRate = yearlyIncome / 84600;
     const givebackRate = (givebackRatePercent / 100) * hourlyRate;
     const tonnePrice = 14;
-    const SCC = 26000;
+    const SCC = 130000;
     const ROI = SCC / tonnePrice;
     const giveBackValue = givebackRate * ROI;
-
-    const hourlyNet = hourlyRate + giveBackValue;
+    const carbonIntensity = 0.26 //kg/USD https://www.iea.org/data-and-statistics/charts/co2-emissions-intensity-of-gdp-1990-2021  , world
+    const salaryCost = hourlyRate * carbonIntensity * SCC / 1000
+    const hourlyNet = hourlyRate + giveBackValue - salaryCost;
     const minutlyNet = hourlyNet / 60;
     const secondlyNet = minutlyNet / 60;
     const microsecondNet = secondlyNet / 1000;
