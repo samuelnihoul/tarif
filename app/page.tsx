@@ -63,13 +63,15 @@ const Calculator: React.FC = () => {
       {result && (
         <div>
           <h2>Results:</h2>
-          <div>Hourly Net: €{result.hourlyNet.toFixed(2)}</div>
-          <div>Minutly Net: €{result.minutlyNet.toFixed(2)}</div>
-          <div>Secondly Net: €{result.secondlyNet.toFixed(2)}</div>
-          <div>Microsecond Net: €{result.microsecondNet.toFixed(6)}</div>
+          <div>Hourly Net: ${result.hourlyNet.toFixed(2)}</div>
+          <div>Minutly Net: ${result.minutlyNet.toFixed(2)}</div>
+          <div>Secondly Net: ${result.secondlyNet.toFixed(2)}</div>
+          <div>Microsecond Net: ${result.microsecondNet.toFixed(6)}</div>
+          <br />
           <div>Tonnes per Hour: {result.tonnePerHour.toFixed(2)}</div>
           <div>kg per Minute: {result.kgPerMinute.toFixed(2)}</div>
           <div>g per Second: {result.gramPerSecond.toFixed(2)}</div>
+          *Values in the second section say how much CO2 you are saving per unit of time. Any action more efficient than that is a must do, anything below is a pass.
         </div>
       )}
     </div>
