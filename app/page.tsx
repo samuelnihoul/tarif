@@ -71,7 +71,7 @@ const Calculator: React.FC = () => {
           <div>Secondly Net: ${result.secondlyNet.toFixed(2)}</div>
           <div>Microsecond Net: ${result.microsecondNet.toFixed(6)}</div>
           <br />
-          Values in the second section say how much CO2 you are saving per unit of time. Any action more efficient than that is a must do, anything below is a pass.
+          Values in this section give the max amount of time to spend to avoid emissions of yours. Anything below that is a must do.
           <div>hour per tonne: {result.hourPerTonne.toFixed(2)}</div>
           <div>minute per kg: {result.minutePerKg.toFixed(2)}</div>
           <div>second per gram: {result.secondPerGram.toFixed(2)}</div><br />
