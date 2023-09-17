@@ -22,9 +22,9 @@ const Calculator: React.FC = () => {
     const minutlyNet = hourlyNet / 60;
     const secondlyNet = minutlyNet / 60;
     const microsecondNet = secondlyNet / 1000;
-    const hourPerTonne = hourlyNet / SCC;
-    const minutePerKg = minutlyNet / (SCC / 1000);
-    const secondPerGram = secondlyNet / (SCC / 1000000);
+    const hourPerTonne = SCC / hourlyNet;
+    const minutePerKg = (SCC / 1000) / minutlyNet;
+    const secondPerGram = (SCC / 1000000) / secondlyNet;
 
     setResult({
       hourlyNet,
@@ -39,9 +39,9 @@ const Calculator: React.FC = () => {
 
   return (
     <div className="container mx-auto p-8 bg-gray-800 ">
-      <h1 className="text-xl">Tarif</h1>
+      <h1 className="text-xl m-3">Tarif</h1>
       <label>
-        Yearly Income ($):&nbsp;
+        Yearly Gross Income ($):&nbsp;
         <input
           type="number"
           value={yearlyIncome}
@@ -60,11 +60,11 @@ const Calculator: React.FC = () => {
         />
       </label>
       <br />
-      <button onClick={() => calculate()} className="text-m p-2 m-2 bg-green-500 text-white rounded">{result ? '1x (relax mode)' : 'Calculate'}</button>
+      <button onClick={() => calculate()} className="text-m p-2 m-2 bg-green-500 text-white rounded">Calculate</button>
 
       {result && (
         <div>
-          <h2 className="text-l">Results:</h2>
+          <h2 className="text-l p-2 m-2">Results:</h2>
           Values in this section indicate your added value per unit of time. It can be used to discriminate actions worth your time.
           <div>Hourly Net: ${result.hourlyNet.toFixed(2)}</div>
           <div>Minutly Net: ${result.minutlyNet.toFixed(2)}</div>
@@ -75,6 +75,7 @@ const Calculator: React.FC = () => {
           <div>hour per tonne: {result.hourPerTonne.toFixed(2)}</div>
           <div>minute per kg: {result.minutePerKg.toFixed(2)}</div>
           <div>second per gram: {result.secondPerGram.toFixed(2)}</div><br />
+          <button onClick={() => calculate(1)} className="m-2 p-2 bg-green-500 text-white rounded">1x (relax mode)</button>
           <button onClick={() => calculate(10)} className="m-2 p-2 bg-yellow-500 text-white rounded">10x (focus mode)</button>
           <button onClick={() => calculate(100)} className="m-2 p-2 bg-red-500 text-white rounded">100x (sprint mode)
           </button>
