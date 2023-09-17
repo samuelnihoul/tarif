@@ -60,7 +60,7 @@ const Calculator: React.FC = () => {
         />
       </label>
       <br />
-      <button onClick={() => calculate()} className="text-m p-2 m-2 bg-green-500 text-white rounded">Calculate</button>
+      <button onClick={() => calculate()} className="text-m p-2 m-2 bg-green-500 text-white rounded">{result ? '1x (relax mode)' : 'Calculate'}</button>
 
       {result && (
         <div>
