@@ -10,18 +10,17 @@ const Calculator: React.FC = () => {
     if (typeof yearlyIncome === "string" || typeof givebackRatePercent === "string") return;
 
     const hourlyRate = yearlyIncome / 84600;
-    const givebackRate = (givebackRatePercent / 100) * hourlyRate;
-    const tonnePrice = 14;
-    const SCC = 130000;
+    const givebackRate = (givebackRatePercent / 100) * hourlyRate;// how much you give per hour
+    const tonnePrice = 12; // https://marketplace.goldstandard.org
+    const SCC = 130000;// USD/tonne
     const ROI = SCC / tonnePrice;
-    const giveBackValue = givebackRate * ROI;
-    const carbonIntensity = 0.26 //kg/USD https://www.iea.org/data-and-statistics/charts/co2-emissions-intensity-of-gdp-1990-2021  , world
+    const giveBackValue = givebackRate * ROI; // debatable, hp of instantaneity, hp of no double people-crediting
+    const carbonIntensity = 0.26 // kg/USD, https://www.iea.org/data-and-statistics/charts/co2-emissions-intensity-of-gdp-1990-2021  , world
     const salaryCost = hourlyRate * carbonIntensity * SCC / 1000
     const hourlyNet = hourlyRate + giveBackValue - salaryCost;
     const minutlyNet = hourlyNet / 60;
     const secondlyNet = minutlyNet / 60;
     const microsecondNet = secondlyNet / 1000;
-
     const tonnePerHour = SCC / hourlyNet;
     const kgPerMinute = SCC / minutlyNet / 1000;
     const gramPerSecond = SCC / secondlyNet / 1000;
@@ -65,15 +64,16 @@ const Calculator: React.FC = () => {
       {result && (
         <div>
           <h2 className="text-l">Results:</h2>
+          Values in this section indicate your added value per unit of time. It can be used to discriminate actions worth your time.
           <div>Hourly Net: ${result.hourlyNet.toFixed(2)}</div>
           <div>Minutly Net: ${result.minutlyNet.toFixed(2)}</div>
           <div>Secondly Net: ${result.secondlyNet.toFixed(2)}</div>
           <div>Microsecond Net: ${result.microsecondNet.toFixed(6)}</div>
           <br />
+          Values in the second section say how much CO2 you are saving per unit of time. Any action more efficient than that is a must do, anything below is a pass.
           <div>Tonnes per Hour: {result.tonnePerHour.toFixed(2)}</div>
           <div>kg per Minute: {result.kgPerMinute.toFixed(2)}</div>
-          <div>g per Second: {result.gramPerSecond.toFixed(2)}</div>
-          *Values in the second section say how much CO2 you are saving per unit of time. Any action more efficient than that is a must do, anything below is a pass.
+          <div>g per Second: {result.gramPerSecond.toFixed(2)}</div><br />
         </div>
       )}
     </div>
