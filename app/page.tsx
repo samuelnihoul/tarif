@@ -46,7 +46,7 @@ const Calculator: React.FC = () => {
           type="number"
           value={yearlyIncome}
           className="text-black"
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setYearlyIncome(Number(e.target.value))}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => { e ? setYearlyIncome(Number(e.target.value)) : setYearlyIncome("") }}
         />
       </label>
       <br />
@@ -56,7 +56,7 @@ const Calculator: React.FC = () => {
           type="number"
           className="text-black"
           value={givebackRatePercent}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setGivebackRatePercent(Number(e.target.value))}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => { e ? setGivebackRatePercent(Number(e.target.value)) : setGivebackRatePercent('') }}
         />
       </label>
       <br />
