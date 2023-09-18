@@ -51,7 +51,7 @@ const Calculator: React.FC = () => {
       </label>
       <br />
       <label>
-        Giveback Rate (%):&nbsp;
+        Emission-Reduction-Financing Rate (%):&nbsp;
         <input
           type="number"
           className="text-black"
