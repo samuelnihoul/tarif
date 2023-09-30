@@ -1,6 +1,5 @@
 'use client'
 import { useState, ChangeEvent } from "react";
-
 const Calculator: React.FC = () => {
   const [yearlyIncome, setYearlyIncome] = useState<string | number>(""); // Can be a string or a number to allow for empty input
   const [givebackRatePercent, setGivebackRatePercent] = useState<string | number>(""); // Can be a string or a number to allow for empty input
@@ -22,9 +21,9 @@ const Calculator: React.FC = () => {
     const minutlyNet = hourlyNet / 60;
     const secondlyNet = minutlyNet / 60;
     const microsecondNet = secondlyNet / 1000;
-    const hourPerTonne = SCC / hourlyNet;
-    const minutePerKg = (SCC / 1000) / minutlyNet;
-    const secondPerGram = (SCC / 1000000) / secondlyNet;
+    const hourPerTonne = Math.abs(SCC / hourlyNet);
+    const minutePerKg = Math.abs((SCC / 1000) / minutlyNet);
+    const secondPerGram = Math.abs((SCC / 1000000) / secondlyNet);
 
     setResult({
       hourlyNet,
