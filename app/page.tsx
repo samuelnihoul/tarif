@@ -21,9 +21,9 @@ const Calculator: React.FC = () => {
     const minutlyNet = hourlyNet / 60;
     const secondlyNet = minutlyNet / 60;
     const microsecondNet = secondlyNet / 1000;
-    const hourPerTonne = Math.abs(SCC / hourlyNet);
-    const minutePerKg = Math.abs((SCC / 1000) / minutlyNet);
-    const secondPerGram = Math.abs((SCC / 1000000) / secondlyNet);
+    const hourPerTonne = SCC / hourlyNet;
+    const minutePerKg = (SCC / 1000) / minutlyNet;
+    const secondPerGram = (SCC / 1000000) / secondlyNet;
 
     setResult({
       hourlyNet,
