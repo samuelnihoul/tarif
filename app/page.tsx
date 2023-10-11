@@ -11,7 +11,7 @@ const Calculator: React.FC = () => {
 
     const hourlyRate = yearlyIncome / 84600;
     const givebackRate = (givebackRatePercent / 100) * hourlyRate;// how much you give per hour
-    const tonnePrice = 12; // https://marketplace.goldstandard.org
+    const tonnePrice = 0.54; // https://marketplace.goldstandard.org
     const SCC = 130000;// USD/tonne
     const ROI = SCC / tonnePrice;
     const giveBackValue = givebackRate * ROI; // debatable, hp of instantaneity, hp of no double people-crediting
