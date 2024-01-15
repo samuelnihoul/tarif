@@ -64,16 +64,21 @@ const Calculator: React.FC = () => {
       {result && (
         <div>
           <h2 className="text-l p-2 m-2">Results:</h2>
-          Values in this section indicate your added value per unit of time. It can be used to discriminate actions worth your time.
-          <div>Hourly Net: ${result.hourlyNet.toFixed(2)}</div>
-          <div>Minutly Net: ${result.minutlyNet.toFixed(2)}</div>
-          <div>Secondly Net: ${result.secondlyNet.toFixed(2)}</div>
-          <div>Microsecond Net: ${result.microsecondNet.toFixed(6)}</div>
-          <br />
-          Values in this section give the max amount of time to spend to avoid emissions of yours. Anything below that is a must do.
-          <div>hour per tonne: {result.hourPerTonne.toFixed(2)}</div>
-          <div>minute per kg: {result.minutePerKg.toFixed(2)}</div>
-          <div>second per gram: {result.secondPerGram.toFixed(2)}</div><br />
+        <p>  Values in this section indicate your added value per unit of time. It can be used to discriminate actions worth your time.
+          </p>
+          <ul>
+          <li>hourly net: ${result.hourlyNet.toFixed(2)}</li>
+          <li>minutly net: ${result.minutlyNet.toFixed(2)}</li>
+          <li>secondly net: ${result.secondlyNet.toFixed(2)}</li>
+          <li>millisecond net: ${result.microsecondNet.toFixed(6)}</li>
+         </ul>
+         <p> Values in this section give the max amount of time to spend to avoid emissions of yours. Anything below that is a must do.
+          </p>
+           <ul>
+          <li>hour per tonne: {result.hourPerTonne.toFixed(2)}</li>
+          <li>minute per kg: {result.minutePerKg.toFixed(2)}</li>
+          <li>second per gram: {result.secondPerGram.toFixed(2)}</li>
+          </ul>
           <button onClick={() => calculate(1)} className="m-2 p-2 bg-green-500 text-white rounded">1x (relax mode)</button>
           <button onClick={() => calculate(10)} className="m-2 p-2 bg-yellow-500 text-white rounded">10x (focus mode)</button>
           <button onClick={() => calculate(100)} className="m-2 p-2 bg-red-500 text-white rounded">100x (sprint mode)
