@@ -35,7 +35,7 @@ const Calculator: React.FC = () => {
   return (
     <div className="container mx-auto p-8 bg-gray-800 ">
       <h1 className="text-4xl m-3 text-center">Tarif</h1>
-      <h2 className="text-3xl m-2 text-center">What CO2 emissions should you avoid right now.</h2>
+      <h2 className="text-3xl m-2 text-center">Which CO2 emissions you should avoid right now.</h2>
       <label>
         Yearly Gross Income ($):&nbsp;
         <input
