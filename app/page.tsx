@@ -34,7 +34,8 @@ const Calculator: React.FC = () => {
 
   return (
     <div className="container mx-auto p-8 bg-gray-800 ">
-      <h1 className="text-xl m-3">Tarif</h1>
+      <h1 className="text-4xl m-3 text-center">Tarif</h1>
+      <h2 className="text-3xl m-2 text-center">What CO2 emissions should you avoid right now.</h2>
       <label>
         Yearly Gross Income ($):&nbsp;
         <input
@@ -44,17 +45,6 @@ const Calculator: React.FC = () => {
           onChange={(e: ChangeEvent<HTMLInputElement>) => { e.target.value ? setYearlyIncome(Number(e.target.value)) : setYearlyIncome("") }}
         />
       </label>
-      <br />
-      <label>
-        Emission-Reduction-Financing Rate (% of income):&nbsp;
-        <input
-          type="number"
-          className="text-black"
-          value={givebackRatePercent}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => { e.target.value ? setGivebackRatePercent(Number(e.target.value)) : setGivebackRatePercent('') }}
-        />
-      </label>
-      <br />
       <button onClick={() => calculate()} className="text-m p-2 m-2 bg-green-500 text-white rounded">Calculate</button>
 
       {result && (
