@@ -11,17 +11,13 @@ const Calculator: React.FC = () => {
 
     const hourlyRate = yearlyIncome / 84600;
     const givebackRate = (givebackRatePercent / 100) * hourlyRate;// how much you give per hour
-    const tonnePrice = 11; // https://marketplace.goldstandard.org
+    const tonnePrice = 2.6; // https://marketplace.goldstandard.org
     const SCC = 130000;// USD/tonne
-    const ROI = SCC / tonnePrice;
-    const giveBackValue = givebackRate * ROI; // debatable, hp of instantaneity, hp of no double people-crediting
-    const carbonIntensity = 0.26 // kg/USD, https://www.iea.org/data-and-statistics/charts/co2-emissions-intensity-of-gdp-1990-2021  , world
-    const salaryCost = hourlyRate * carbonIntensity * SCC / 1000
-    const hourlyNet = (hourlyRate + giveBackValue - salaryCost) * x
-    const minutlyNet = hourlyNet / 60;
+   
+    const minutlyNet = hourlyRate / 60;
     const secondlyNet = minutlyNet / 60;
-    const microsecondNet = secondlyNet / 1000;
-    const hourPerTonne = SCC / hourlyNet;
+    const millisecondNet = secondlyNet / 1000;
+    const hourPerTonne = SCC / hourlyRate;
     const minutePerKg = (SCC / 1000) / minutlyNet;
     const secondPerGram = (SCC / 1000000) / secondlyNet;
 
