@@ -1,8 +1,9 @@
 'use client'
-import { useState, ChangeEvent } from "react";
-class metrics {
-  hourlyNet: number;
-  minutlyNet: number;
+import React, { useState, ChangeEvent } from "react";
+
+class Metrics {
+  hourlyRate: number;
+  minutelyNet: number;
   secondlyNet: number;
   millisecondNet: number;
   hourPerTonne: number;
@@ -10,80 +11,111 @@ class metrics {
   secondPerGram: number;
   constructor(
     hourlyRate: number,
-    minutlyNet: number,
+    minutelyNet: number,
     secondlyNet: number,
     millisecondNet: number,
     hourPerTonne: number,
     minutePerKg: number,
     secondPerGram: number
-
   ) {
-    this.hourlyNet = hourlyRate;
-    this.minutlyNet = minutlyNet;
+    this.hourlyRate = hourlyRate;
+    this.minutelyNet = minutelyNet;
     this.secondlyNet = secondlyNet;
     this.millisecondNet = millisecondNet;
     this.hourPerTonne = hourPerTonne;
     this.minutePerKg = minutePerKg;
     this.secondPerGram = secondPerGram;
   }
-
 }
+
 const Calculator: React.FC = () => {
-  const [yearlyIncome, syearlyIncome] = useState(0)
-  const [givebackRate, syivebackRate] = useState(0);
-  const [result, sresult] = useState<metrics>(new metrics(0, 0, 0, 0, 0, 0, 0));
+  const [yearlyIncome, setYearlyIncome] = useState<number>(0);
+  const [givebackRate, setGivebackRate] = useState<number>(0);
+  const [result, setResult] = useState<Metrics>(
+    new Metrics(0, 0, 0, 0, 0, 0, 0)
+  );
+
   const calculate = () => {
-    if (!yearlyIncome) return
+    if (!yearlyIncome) return;
+
     const hourlyRate = yearlyIncome / 84600;
     const hourlyGiveback = (givebackRate / 100) * hourlyRate;
     const tonnePrice = 2.6;
     const SCC = 130000;
-    const hourlyNet = hourlyGiveback / tonnePrice * SCC + hourlyRate
-    const minutlyNet = hourlyNet / 60;
-    const secondlyNet = minutlyNet / 60;
+    const hourlyNet = (hourlyGiveback / tonnePrice) * SCC + hourlyRate;
+    const minutelyNet = hourlyNet / 60;
+    const secondlyNet = minutelyNet / 60;
     const millisecondNet = secondlyNet / 1000;
     const hourPerTonne = SCC / hourlyRate;
-    const minutePerKg = (SCC / 1000) / minutlyNet;
+    const minutePerKg = (SCC / 1000) / minutelyNet;
     const secondPerGram = (SCC / 1000000) / secondlyNet;
 
-    sresult(new metrics(
-      hourlyNet,
-      minutlyNet,
-      secondlyNet,
-      millisecondNet,
-      hourPerTonne,
-      minutePerKg,
-      secondPerGram,
-    ))
-  }
+    setResult(
+      new Metrics(
+        hourlyNet,
+        minutelyNet,
+        secondlyNet,
+        millisecondNet,
+        hourPerTonne,
+        minutePerKg,
+        secondPerGram
+      )
+    );
+  };
 
   return (
     <div className="container mx-auto p-8 bg-gray-800 ">
       <h1 className="text-4xl m-3 text-center">Tarif</h1>
-      <h2 className="text-3xl m-2 text-center">Which CO2 emissions you should avoid right now.</h2>
+      <h2 className="text-3xl m-2 text-center">
+        Which CO2 emissions you should avoid right now.
+      </h2>
       <label>
         Yearly Gross Income ($):&nbsp;
         <input
           type="number"
           value={yearlyIncome}
           className="text-black"
-          onChange={(e: ChangeEvent<HTMLInputElement>) => { e.target.value ? syearlyIncome(Number(e.target.value)) : syearlyIncome(0) }}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setYearlyIncome(Number(e.target.value));
+          }}
         />
       </label>
-      <button onClick={() => calculate()} className="text-m p-2 m-2 bg-green-500 text-white rounded">Calculate</button>
+      <br />
+      <label>
+        Giveback Rate (%):&nbsp;
+        <input
+          type="number"
+          value={givebackRate}
+          className="text-black"
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setGivebackRate(Number(e.target.value));
+          }}
+        />
+      </label>
+      <br />
+      <button
+        onClick={() => calculate()}
+        className="text-m p-2 m-2 bg-green-500 text-white rounded"
+      >
+        Calculate
+      </button>
 
-      {result && (
+      {yearlyIncome != 0 && (
         <div>
           <h2 className="text-l p-2 m-2">Results:</h2>
-          <p>  Values in this section indicate your added value per unit of time. It can be used to discriminate actions worth your time.
+          <p>
+            Values in this section indicate your added value per unit of time.
+            It can be used to discriminate actions worth your time.
           </p>
           <ul>
-            <li>hourly net: ${result.hourlyNet.toFixed(2)}</li>
-            <li>minutly net: ${result.minutlyNet.toFixed(2)}</li>
+            <li>hourly net: ${result.hourlyRate.toFixed(2)}</li>
+            <li>minutely net: ${result.minutelyNet.toFixed(2)}</li>
             <li>secondly net: ${result.secondlyNet.toFixed(2)}</li>
             <li>millisecond net: ${result.millisecondNet.toFixed(6)}</li>
           </ul>
-          <p> Values in this section give the max amount of time to spend to avoid emissions of yours. Anything below that is a must do.
+          <p>
+            Values in this section give the max amount of time to spend to
+            avoid emissions of yours. Anything below that is a must do.
           </p>
           <ul>
             <li>hour per tonne: {result.hourPerTonne.toFixed(2)}</li>
