@@ -2,7 +2,7 @@
 import React, { useState, ChangeEvent } from "react";
 
 class Metrics {
-  hourlyRate: number;
+  hourlyNet: number;
   minutelyNet: number;
   secondlyNet: number;
   millisecondNet: number;
@@ -18,7 +18,7 @@ class Metrics {
     minutePerKg: number,
     secondPerGram: number
   ) {
-    this.hourlyRate = hourlyRate;
+    this.hourlyNet = hourlyRate;
     this.minutelyNet = minutelyNet;
     this.secondlyNet = secondlyNet;
     this.millisecondNet = millisecondNet;
@@ -34,21 +34,22 @@ const Calculator: React.FC = () => {
   const [result, setResult] = useState<Metrics>(
     new Metrics(0, 0, 0, 0, 0, 0, 0)
   );
-
+  const SCC = 130000;
   const calculate = () => {
     if (!yearlyIncome) return;
 
-    const hourlyRate = yearlyIncome / 84600;
+    const hourlyRate = yearlyIncome / 8760;
     const hourlyGiveback = (givebackRate / 100) * hourlyRate;
     const tonnePrice = 2.6;
-    const SCC = 130000;
-    const hourlyNet = (hourlyGiveback / tonnePrice) * SCC + hourlyRate;
+
+    const hourlyNet = hourlyGiveback / tonnePrice * SCC + hourlyRate;
     const minutelyNet = hourlyNet / 60;
     const secondlyNet = minutelyNet / 60;
     const millisecondNet = secondlyNet / 1000;
-    const hourPerTonne = SCC / hourlyRate;
+    const hourPerTonne = SCC / hourlyNet;
     const minutePerKg = (SCC / 1000) / minutelyNet;
     const secondPerGram = (SCC / 1000000) / secondlyNet;
+
 
     setResult(
       new Metrics(
@@ -108,7 +109,7 @@ const Calculator: React.FC = () => {
             It can be used to discriminate actions worth your time.
           </p>
           <ul>
-            <li>hourly net: ${result.hourlyRate.toFixed(2)}</li>
+            <li>hourly net: ${result.hourlyNet.toFixed(2)}</li>
             <li>minutely net: ${result.minutelyNet.toFixed(2)}</li>
             <li>secondly net: ${result.secondlyNet.toFixed(2)}</li>
             <li>millisecond net: ${result.millisecondNet.toFixed(6)}</li>
@@ -121,6 +122,11 @@ const Calculator: React.FC = () => {
             <li>hour per tonne: {result.hourPerTonne.toFixed(2)}</li>
             <li>minute per kg: {result.minutePerKg.toFixed(2)}</li>
             <li>second per gram: {result.secondPerGram.toFixed(2)}</li>
+          </ul>
+          <ul>
+            <li>SCC per tonne: {SCC}</li>
+            <li>SCC per kg: {SCC / 1000}</li>
+            <li>SCC per gram: {SCC / 1000000}</li>
           </ul>
         </div>
       )}
