@@ -41,8 +41,8 @@ const Calculator: React.FC = () => {
     const hourlyRate = yearlyIncome / 8760;
     const hourlyGiveback = (givebackRate / 100) * hourlyRate;
     const tonnePrice = 2.6;
-
-    const hourlyNet = hourlyGiveback / tonnePrice * SCC + hourlyRate;
+    const intensity = 0.13
+    const hourlyNet = hourlyGiveback / tonnePrice * SCC + hourlyRate// - hourlyRate * (SCC / 1000) * intensity;
     const minutelyNet = hourlyNet / 60;
     const secondlyNet = minutelyNet / 60;
     const millisecondNet = secondlyNet / 1000;
