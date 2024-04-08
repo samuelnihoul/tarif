@@ -35,14 +35,13 @@ const Calculator: React.FC = () => {
     new Metrics(0, 0, 0, 0, 0, 0, 0)
   );
   const SCC = 130000;
-  const calculate = () => {
+  const calculate = (x: number = 1) => {
     if (!yearlyIncome) return;
 
-    const hourlyRate = yearlyIncome / 8760;
+    const hourlyRate = yearlyIncome * x / 8760;
     const hourlyGiveback = (givebackRate / 100) * hourlyRate;
-    const tonnePrice = 2.6;
-    const intensity = 0.13
-    const hourlyNet = hourlyGiveback / tonnePrice * SCC + hourlyRate// - hourlyRate * (SCC / 1000) * intensity;
+    const tonnePrice = 10;
+    const hourlyNet = hourlyGiveback / tonnePrice * SCC + hourlyRate
     const minutelyNet = hourlyNet / 60;
     const secondlyNet = minutelyNet / 60;
     const millisecondNet = secondlyNet / 1000;
@@ -102,7 +101,7 @@ const Calculator: React.FC = () => {
       </button>
 
       {yearlyIncome != 0 && (
-        <div>
+        <>
           <h2 className="text-l p-2 m-2">Results:</h2>
           <p>
             Values in this section indicate your added value per unit of time.
@@ -128,7 +127,7 @@ const Calculator: React.FC = () => {
             <li>SCC per kg: {SCC / 1000}</li>
             <li>SCC per gram: {SCC / 1000000}</li>
           </ul>
-        </div>
+        </>
       )}
     </div>
   );
