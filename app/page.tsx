@@ -126,6 +126,7 @@ const Calculator: React.FC = () => {
             <li>SCC per tonne: {SCC}</li>
             <li>SCC per kg: {SCC / 1000}</li>
             <li>SCC per gram: {SCC / 1000000}</li>
+           <li>Price per tonne: {tonnePrice} </li>
           </ul>
         </>
       )}
